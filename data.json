@@ -3,5 +3,10 @@
     "task": "Group Goon Sesh",
     "due": "Thurs Oct 23 11:59 PM",
     "done": false
+  },
+  {
+    "task": "Paper",
+    "due": "11/9",
+    "done": false
   }
 ]
