@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework Planner</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #task-form {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #333;
+      color: #fff;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <h1>Homework Planner</h1>
+
+  <div id="task-form">
+    <input type="text" id="task" placeholder="Homework task">
+    <input type="date" id="due-date">
+    <button onclick="addTask()">Add Task</button>
+  </div>
+
+  <table id="task-table">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Due Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    let tasks = [];
+
+    function addTask() {
+      const task = document.getElementById('task').value;
+      const dueDate = document.getElementById('due-date').value;
+
+      if (task && dueDate) {
+        tasks.push({ task, dueDate, completed: false });
+        renderTasks();
+        document.getElementById('task').value = '';
+        document.getElementById('due-date').value = '';
+      }
+    }
+
+    function toggleComplete(index) {
+      tasks[index].completed = !tasks[index].completed;
+      renderTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    function renderTasks() {
+      const tbody = document.querySelector('#task-table tbody');
+      tbody.innerHTML = '';
+      tasks.forEach((t, i) => {
+        tbody.innerHTML += `
+          <tr>
+            <td class="${t.completed ? 'completed' : ''}">${t.task}</td>
+            <td>${t.dueDate}</td>
+            <td>${t.completed ? 'Completed' : 'Pending'}</td>
+            <td>
+              <button onclick="toggleComplete(${i})">${t.completed ? 'Undo' : 'Complete'}</button>
+              <button onclick="deleteTask(${i})">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+  </script>
+</body>
+</html>
+
