@@ -7,4 +7,5 @@ A simple Homework Planner that helps you track assignments, due dates, and compl
 - View all pending and completed tasks
 - Mark assignments as completed
 - Remove finished tasks
-- Data automaticaly saved in 'data.json'
+
+- Data automaticaly saved in GUI.py
